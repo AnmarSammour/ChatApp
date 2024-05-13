@@ -1,5 +1,5 @@
-import 'package:chat_app/view/signin/widgets/custom_button.dart';
-import 'package:chat_app/view/signin/widgets/custom_text_field.dart';
+import 'package:chat_app/view/widgets/custom_button.dart';
+import 'package:chat_app/view/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 class SingInView extends StatefulWidget {
