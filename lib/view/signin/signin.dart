@@ -1,3 +1,5 @@
+import 'package:chat_app/view/signin/widgets/custom_button.dart';
+import 'package:chat_app/view/signin/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 class SingInView extends StatefulWidget {
@@ -10,9 +12,9 @@ class _SingInViewState extends State<SingInView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffbfd3e9),
+      backgroundColor: Color(0xff396ca4),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           children: [
             SizedBox(
@@ -40,7 +42,7 @@ class _SingInViewState extends State<SingInView> {
             Row(
               children: [
                 Text(
-                  'SIgnIN',
+                  'Sign IN',
                   style: TextStyle(
                     fontSize: 24,
                     color: Colors.white,
@@ -51,40 +53,23 @@ class _SingInViewState extends State<SingInView> {
             const SizedBox(
               height: 20,
             ),
-            TextField(
-              
+            CustomFormTextField(
+              hintText: 'Email',
             ),
             SizedBox(
               height: 10,
             ),
-            
+            CustomFormTextField(
+              hintText: 'Password',
+            ),
             SizedBox(
               height: 20,
             ),
             CustomButon(
-              onTap: () async {
-                if (formKey.currentState!.validate()) {
-                  isLoading = true;
-                  setState(() {});
-                  try {
-                    await loginUser();
-                    Navigator.pushNamed(context, ChatPage.id, arguments: email);
-                  } on FirebaseAuthException catch (ex) {
-                    if (ex.code == 'user-not-found') {
-                      showSnackBar(context, 'user not found');
-                    } else if (ex.code == 'wrong-password') {
-                      showSnackBar(context, 'wrong password');
-                    }
-                  } catch (ex) {
-                    print(ex);
-                    showSnackBar(context, 'there was an error');
-                  }
+              onTap: () {
 
-                  isLoading = false;
-                  setState(() {});
-                } else {}
               },
-              text: 'LOGIN',
+              text: 'Sign In',
             ),
             SizedBox(
               height: 10,
@@ -99,13 +84,11 @@ class _SingInViewState extends State<SingInView> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, RegisterPage.id);
-                  },
+                  onTap: () {},
                   child: Text(
                     '  Register',
                     style: TextStyle(
-                      color: Color(0xffC7EDE6),
+                      color: Color(0xffbfd3e9),
                     ),
                   ),
                 ),
