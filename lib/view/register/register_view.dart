@@ -1,5 +1,4 @@
 import 'package:chat_app/constants.dart';
-import 'package:chat_app/view/login/login.dart';
 import 'package:chat_app/view/widgets/custom_button.dart';
 import 'package:chat_app/view/widgets/custom_text_field.dart';
 import 'package:chat_app/view/widgets/show_snack_bar.dart';
@@ -126,7 +125,7 @@ class _RegisterViewState extends State<RegisterView> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, LogInView.id);
+                        Navigator.pop(context);
                       },
                       child: Text(
                         '  LogIn',
