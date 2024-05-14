@@ -1,9 +1,14 @@
+import 'package:chat_app/constants.dart';
+import 'package:chat_app/view/login/login.dart';
 import 'package:chat_app/view/widgets/custom_button.dart';
 import 'package:chat_app/view/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
+
+  static String id = 'RegisterView';
+
   @override
   State<RegisterView> createState() => _RegisterViewState();
 }
@@ -12,16 +17,16 @@ class _RegisterViewState extends State<RegisterView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff396ca4),
+      backgroundColor: primaryColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
+        child: ListView(
           children: [
             SizedBox(
               height: 75,
             ),
             Image.asset(
-              'assets/images/chat_icon.png',
+              logo,
               height: 100,
             ),
             Row(
@@ -66,9 +71,7 @@ class _RegisterViewState extends State<RegisterView> {
               height: 20,
             ),
             CustomButon(
-              onTap: () {
-
-              },
+              onTap: () {},
               text: 'Register',
             ),
             SizedBox(
@@ -84,7 +87,9 @@ class _RegisterViewState extends State<RegisterView> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, LogInView.id);
+                  },
                   child: Text(
                     '  LogIn',
                     style: TextStyle(

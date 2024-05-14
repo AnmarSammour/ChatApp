@@ -1,9 +1,14 @@
+import 'package:chat_app/constants.dart';
+import 'package:chat_app/view/register/register_view.dart';
 import 'package:chat_app/view/widgets/custom_button.dart';
 import 'package:chat_app/view/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 class LogInView extends StatefulWidget {
   const LogInView({super.key});
+
+  static String id = 'LogInView';
+
   @override
   State<LogInView> createState() => _LogInViewState();
 }
@@ -12,16 +17,16 @@ class _LogInViewState extends State<LogInView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff396ca4),
+      backgroundColor: primaryColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
+        child: ListView(
           children: [
             SizedBox(
               height: 75,
             ),
             Image.asset(
-              'assets/images/chat_icon.png',
+              logo,
               height: 100,
             ),
             Row(
@@ -42,7 +47,7 @@ class _LogInViewState extends State<LogInView> {
             Row(
               children: [
                 Text(
-                  'Sign IN',
+                  'Log In',
                   style: TextStyle(
                     fontSize: 24,
                     color: Colors.white,
@@ -66,10 +71,8 @@ class _LogInViewState extends State<LogInView> {
               height: 20,
             ),
             CustomButon(
-              onTap: () {
-
-              },
-              text: 'Sign In',
+              onTap: () {},
+              text: 'Log In',
             ),
             SizedBox(
               height: 10,
@@ -84,7 +87,9 @@ class _LogInViewState extends State<LogInView> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, RegisterView.id);
+                  },
                   child: Text(
                     '  Register',
                     style: TextStyle(
