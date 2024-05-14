@@ -1,9 +1,11 @@
 import 'package:chat_app/constants.dart';
 import 'package:chat_app/view/widgets/chat_buble.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ChatView extends StatelessWidget {
   static String id = 'ChatView';
+  CollectionReference messages = FirebaseFirestore.instance.collection('messages');
 
   @override
   Widget build(BuildContext context) {
