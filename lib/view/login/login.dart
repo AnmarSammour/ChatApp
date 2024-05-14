@@ -1,4 +1,5 @@
 import 'package:chat_app/constants.dart';
+import 'package:chat_app/view/chat/chat.dart';
 import 'package:chat_app/view/register/register_view.dart';
 import 'package:chat_app/view/widgets/custom_button.dart';
 import 'package:chat_app/view/widgets/custom_text_field.dart';
@@ -97,6 +98,8 @@ class _LogInViewState extends State<LogInView> {
                       setState(() {});
                       try {
                         await loginUser();
+                        Navigator.pushNamed(context, ChatView.id,
+                            arguments: email);
                       } on FirebaseAuthException catch (ex) {
                         if (ex.code == 'user-not-found') {
                           showSnackBar(context, 'user not found');

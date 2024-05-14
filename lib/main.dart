@@ -1,3 +1,4 @@
+import 'package:chat_app/view/chat/chat.dart';
 import 'package:chat_app/view/login/login.dart';
 import 'package:chat_app/view/register/register_view.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -22,6 +23,7 @@ class Chat extends StatelessWidget {
       routes: {
         LogInView.id: (context) => LogInView(),
         RegisterView.id: (context) => RegisterView(),
+        ChatView.id: (context) => ChatView()
       },
       initialRoute: LogInView.id,
     );
