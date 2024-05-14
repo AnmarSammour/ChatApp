@@ -1,4 +1,4 @@
-import 'package:chat_app/view/signin/signin.dart';
+import 'package:chat_app/view/login/login.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,7 +11,7 @@ class Chat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: SingInView()
+      home: LogInView()
     );
   }
 }

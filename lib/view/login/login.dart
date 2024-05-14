@@ -2,13 +2,13 @@ import 'package:chat_app/view/widgets/custom_button.dart';
 import 'package:chat_app/view/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
-class SingInView extends StatefulWidget {
-  const SingInView({super.key});
+class LogInView extends StatefulWidget {
+  const LogInView({super.key});
   @override
-  State<SingInView> createState() => _SingInViewState();
+  State<LogInView> createState() => _LogInViewState();
 }
 
-class _SingInViewState extends State<SingInView> {
+class _LogInViewState extends State<LogInView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
