@@ -98,8 +98,7 @@ class _LogInViewState extends State<LogInView> {
                       setState(() {});
                       try {
                         await loginUser();
-                        Navigator.pushNamed(context, ChatView.id,
-                            arguments: email);
+                        Navigator.pushNamed(context, ChatView.id);
                       } on FirebaseAuthException catch (ex) {
                         if (ex.code == 'user-not-found') {
                           showSnackBar(context, 'user not found');

@@ -6,6 +6,6 @@ class Message {
   Message(this.message, this.id);
 
   factory Message.fromJson(jsonData) {
-    return Message(jsonData[messages], jsonData['id']);
+    return Message(jsonData[cMessages], jsonData['id']);
   }
 }
