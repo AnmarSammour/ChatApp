@@ -14,13 +14,13 @@ class ChatBuble extends StatelessWidget {
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(
-        padding: EdgeInsets.only(left: 16, top: 32, bottom: 32, right: 32),
+        padding: EdgeInsets.only(left: 16, top: 20, bottom: 20, right: 32),
         margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(32),
-            topRight: Radius.circular(32),
-            bottomRight: Radius.circular(32),
+            topLeft: Radius.circular(25),
+            topRight: Radius.circular(25),
+            bottomRight: Radius.circular(25),
           ),
           color: primaryColor,
         ),
