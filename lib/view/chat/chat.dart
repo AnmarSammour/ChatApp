@@ -1,9 +1,11 @@
 import 'package:chat_app/constants.dart';
 import 'package:chat_app/models/message.dart';
 import 'package:chat_app/view/widgets/chat_buble.dart';
+import 'package:chat_app/view/widgets/chat_buble_friend%20.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+// ignore: must_be_immutable
 class ChatView extends StatelessWidget {
   static String id = 'ChatView';
 
@@ -14,28 +16,29 @@ class ChatView extends StatelessWidget {
   TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    String? email = ModalRoute.of(context)!.settings.arguments.toString();
     return StreamBuilder<QuerySnapshot>(
       stream: messages.orderBy(createdAt, descending: true).snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<Message> messagesList = [];
           for (int i = 0; i < snapshot.data!.docs.length; i++) {
-            messagesList.add(Message.fromJson(snapshot.data!.docs[i] as Map<String, dynamic>));
+            messagesList.add(Message.fromJson(snapshot.data!.docs[i]));
           }
 
           return Scaffold(
             appBar: AppBar(
               automaticallyImplyLeading: false,
               backgroundColor: primaryColor,
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    logo,
-                    height: 50,
+              title: Center(
+                child: Text(
+                  'General chat',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
                   ),
-                  Text('chat'),
-                ],
+                  textAlign: TextAlign.center,
+                ),
               ),
               centerTitle: true,
             ),
@@ -47,9 +50,11 @@ class ChatView extends StatelessWidget {
                       controller: _controller,
                       itemCount: messagesList.length,
                       itemBuilder: (context, index) {
-                        return ChatBuble(
-                          message: messagesList[index],
-                        );
+                        return messagesList[index].id == email
+                            ? ChatBuble(
+                                message: messagesList[index],
+                              )
+                            : ChatBubleForFriend(message: messagesList[index]);
                       }),
                 ),
                 Padding(
@@ -58,7 +63,11 @@ class ChatView extends StatelessWidget {
                     controller: controller,
                     onSubmitted: (data) {
                       messages.add(
-                        {cMessages: data, createdAt: DateTime.now()},
+                        {
+                          cMessages: data,
+                          createdAt: DateTime.now(),
+                          'id': email
+                        },
                       );
                       controller.clear();
                       _controller.animateTo(0,
@@ -67,9 +76,14 @@ class ChatView extends StatelessWidget {
                     },
                     decoration: InputDecoration(
                       hintText: 'Send Message',
-                      suffixIcon: Icon(
-                        Icons.send,
-                        color: primaryColor,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          Icons.send,
+                          color: primaryColor,
+                        ),
+                        onPressed: () {
+                          _sendMessage(email);
+                        },
                       ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(16),
@@ -91,5 +105,19 @@ class ChatView extends StatelessWidget {
         }
       },
     );
+  }
+
+  void _sendMessage(String? email) {
+    if (controller.text.isNotEmpty) {
+      messages.add(
+        {cMessages: controller.text, createdAt: DateTime.now(), 'id': email},
+      );
+      controller.clear();
+      _controller.animateTo(
+        0,
+        duration: Duration(milliseconds: 500),
+        curve: Curves.easeIn,
+      );
+    }
   }
 }

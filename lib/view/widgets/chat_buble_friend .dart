@@ -1,7 +1,6 @@
 import 'package:chat_app/models/message.dart';
 import 'package:flutter/material.dart';
 
-
 class ChatBubleForFriend extends StatelessWidget {
   const ChatBubleForFriend({
     Key? key,
@@ -22,7 +21,7 @@ class ChatBubleForFriend extends StatelessWidget {
             topRight: Radius.circular(32),
             bottomLeft: Radius.circular(32),
           ),
-          color: Color(0xff006D84),
+          color: Color.fromARGB(255, 106, 162, 223),
         ),
         child: Text(
           message.message,
