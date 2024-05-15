@@ -1,8 +1,8 @@
-import 'package:chat_app/constants.dart';
-import 'package:chat_app/view/chat/chat.dart';
-import 'package:chat_app/view/widgets/custom_button.dart';
-import 'package:chat_app/view/widgets/custom_text_field.dart';
-import 'package:chat_app/view/widgets/show_snack_bar.dart';
+import '../../constants.dart';
+import '../chat/chat.dart';
+import '../widgets/custom_button.dart';
+import '../widgets/custom_text_field.dart';
+import '../widgets/show_snack_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -89,7 +89,7 @@ class _RegisterViewState extends State<RegisterView> {
                 SizedBox(
                   height: 20,
                 ),
-                CustomButon(
+                CustomButton(
                   onTap: () async {
                     if (formKey.currentState!.validate()) {
                       isLoading = true;

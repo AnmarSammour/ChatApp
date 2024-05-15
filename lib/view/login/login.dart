@@ -1,15 +1,15 @@
-import 'package:chat_app/constants.dart';
-import 'package:chat_app/view/chat/chat.dart';
-import 'package:chat_app/view/register/register_view.dart';
-import 'package:chat_app/view/widgets/custom_button.dart';
-import 'package:chat_app/view/widgets/custom_text_field.dart';
-import 'package:chat_app/view/widgets/show_snack_bar.dart';
+import '../../constants.dart';
+import '../chat/chat.dart';
+import '../register/register_view.dart';
+import '../widgets/custom_button.dart';
+import '../widgets/custom_text_field.dart';
+import '../widgets/show_snack_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class LogInView extends StatefulWidget {
-  const LogInView({super.key});
+  const LogInView({Key? key}) : super(key: key);
 
   static String id = 'LogInView';
 
@@ -29,6 +29,7 @@ class _LogInViewState extends State<LogInView> {
     return ModalProgressHUD(
       inAsyncCall: isLoading,
       child: Scaffold(
+        // هنا نضيف Scaffold حول الـ body
         backgroundColor: primaryColor,
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -91,29 +92,33 @@ class _LogInViewState extends State<LogInView> {
                 SizedBox(
                   height: 20,
                 ),
-                CustomButon(
+                CustomButton(
                   onTap: () async {
                     if (formKey.currentState!.validate()) {
-                      isLoading = true;
-                      setState(() {});
+                      setState(() {
+                        isLoading = true;
+                      });
                       try {
                         await loginUser();
                         Navigator.pushNamed(context, ChatView.id,
                             arguments: email);
                       } on FirebaseAuthException catch (ex) {
+                        setState(() {
+                          isLoading = false;
+                        });
                         if (ex.code == 'user-not-found') {
-                          showSnackBar(context, 'user not found');
+                          showSnackBar(context, 'User not found');
                         } else if (ex.code == 'wrong-password') {
-                          showSnackBar(context, 'wrong password');
+                          showSnackBar(context, 'Wrong password');
                         }
                       } catch (ex) {
+                        setState(() {
+                          isLoading = false;
+                        });
                         print(ex);
-                        showSnackBar(context, 'there was an error');
+                        showSnackBar(context, 'There was an error');
                       }
-
-                      isLoading = false;
-                      setState(() {});
-                    } else {}
+                    }
                   },
                   text: 'Log In',
                 ),
@@ -124,7 +129,7 @@ class _LogInViewState extends State<LogInView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'dont\'t have an account?',
+                      'Don\'t have an account?',
                       style: TextStyle(
                         color: Colors.white,
                       ),
@@ -155,4 +160,5 @@ class _LogInViewState extends State<LogInView> {
         .signInWithEmailAndPassword(email: email!, password: password!);
     return user;
   }
+
 }

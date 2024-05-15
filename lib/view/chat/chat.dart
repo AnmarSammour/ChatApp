@@ -1,7 +1,7 @@
-import 'package:chat_app/constants.dart';
-import 'package:chat_app/models/message.dart';
-import 'package:chat_app/view/widgets/chat_buble.dart';
-import 'package:chat_app/view/widgets/chat_buble_friend%20.dart';
+import '../../constants.dart';
+import '../../models/message.dart';
+import '../widgets/chat_buble.dart';
+import '../widgets/chat_buble_friend%20.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
