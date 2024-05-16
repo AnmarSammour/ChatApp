@@ -27,7 +27,7 @@ git clone https://github.com/AnmarSammour/ChatApp
 2. Navigate to the project directory:
 
 ```
-cd your_chat_app
+cd ChatApp
 ```
 
 3. Install dependencies:
