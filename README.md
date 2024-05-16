@@ -21,7 +21,7 @@ A Flutter application that allows users to authenticate via email and password a
 1. Clone the repository:
 
 ```
-git clone https://github.com/YourUsername/your_chat_app
+git clone https://github.com/AnmarSammour/ChatApp
 ```
 
 2. Navigate to the project directory:
