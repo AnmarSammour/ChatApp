@@ -29,7 +29,6 @@ class _LogInViewState extends State<LogInView> {
     return ModalProgressHUD(
       inAsyncCall: isLoading,
       child: Scaffold(
-        // هنا نضيف Scaffold حول الـ body
         backgroundColor: primaryColor,
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
